@@ -40,7 +40,7 @@ ALTER TABLE citas MODIFY COLUMN hora TIMESTAMP;
 
 --Después esto : 
 -- Insertar datos de ejemplo en estado_cita
-INSERT INTO estado_cita (descripcion) VALUES 
+INSERT INTO estado_cita (nombre_estado) VALUES 
 ('En Proceso'),
 ('Asistio'),
 ('Reprogramado'),

@@ -21,58 +21,62 @@ import com.Citas.Entity.Cita;
 import com.Citas.Service.CitaService;
 
 @RestController
-@RequestMapping(value ="/api/cita")
+@RequestMapping(value = "/api/cita")
 @CrossOrigin("/**")
 public class CitaController {
-    
+
     @Autowired
     private CitaService citaService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
-    public List<Cita> getAll(){
+    public List<Cita> getAll() {
 
         return citaService.getAll();
     }
 
-    
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/one/{id}")
-    public Optional<Cita> getOne(@PathVariable("id") int id){
+    public Optional<Cita> getOne(@PathVariable("id") int id) {
 
         return citaService.getOne(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/save")
-    public Cita save(@RequestBody Cita cita){
+    public Cita save(@RequestBody Cita cita) {
 
         return citaService.save(cita);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/editar/{id}")
-    public Cita editar(@RequestBody Cita cita, @PathVariable("id") int id){
+    public Cita editar(@RequestBody Cita cita, @PathVariable("id") int id) {
 
         return citaService.editar(id, cita);
     }
 
-    
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/delete/{id}")
-    public void eliminar(@PathVariable("id") int id){
+    public void eliminar(@PathVariable("id") int id) {
 
         citaService.delete(id);
     }
 
-
-    //Solicitud para ingreso de 2 microservicios
+    // Solicitud para ingreso de 2 microservicios : Persona llama a todas las citas
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/buscar-my-citas/{idpaciente}")
-    public ResponseEntity<?> findByIdCita(@PathVariable int idpaciente){
+    public ResponseEntity<?> findByIdCita(@PathVariable int idpaciente) {
 
         return ResponseEntity.ok(citaService.findByIdPaciente(idpaciente));
 
     }
 
+    // Buscar Cita y a la persona que le corresponde
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/buscar-my-paciente-porIdCita/{idpac}")
+    public ResponseEntity<?> findPacienteIdCita(@PathVariable("idpac") int idpac) {
+        return ResponseEntity.ok(citaService.findPacienteByIdCita(idpac));
+    }
 
 }

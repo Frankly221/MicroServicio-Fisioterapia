@@ -95,6 +95,12 @@ public class PacienteController {
 
 
 
+    //Encontrar los atributos de paciente segun el n° de cita
+
+    @GetMapping("/buscar-paciente-por-id-cita/{idpac}")
+    public ResponseEntity<?> darPacienteByIdPaciente(@PathVariable("idpac") int idpac){
+        return ResponseEntity.ok(pacienteServi.findByIdPac(idpac));
+    }
 
 
 

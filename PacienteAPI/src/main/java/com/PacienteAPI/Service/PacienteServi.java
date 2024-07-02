@@ -132,4 +132,11 @@ public class  PacienteServi  {
     }
 
 
+    public Optional<Paciente> findByIdPac(int idpac){
+        return pacienteRepo.findByIdpac(idpac);
+    }
+
+
+
+
 }

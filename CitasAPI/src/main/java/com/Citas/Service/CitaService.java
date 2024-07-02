@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Citas.Client.Paciente_Client;
+import com.Citas.DTO.PacienteDTO;
 import com.Citas.Entity.Cita;
+import com.Citas.Http.Response.PacienteByIdCita;
 import com.Citas.Repositorio.CitaRepo;
 
 @Service
@@ -15,6 +18,9 @@ public class CitaService {
 
     @Autowired
     private CitaRepo citaRepo;
+
+    @Autowired
+    private Paciente_Client paciente_Client;
 
     public List<Cita> getAll(){
         return citaRepo.findAll();
@@ -56,6 +62,43 @@ public class CitaService {
 
         return citaRepo.findByIdpaciente(idpaciente);
     }
+
+
+    //Traer citas
+    public PacienteByIdCita findPacienteByIdCita(int idpac){
+
+        //Llamamos los datos de Cita
+        Cita cita = citaRepo.findById(idpac).orElse(new Cita());
+
+        //Llamamos Los datos de Persona
+         Optional<PacienteDTO> pacienteDTO = paciente_Client.findByIdPaciente(idpac);
+
+
+
+        return PacienteByIdCita.builder()
+        .idcita(cita.getIdcita())
+        .tipo(cita.getTipo())
+        .idpaciente(cita.getIdpaciente())
+        .hora(cita.getHora())
+        .fecha(cita.getFecha())
+        .n_sesion(cita.getN_sesion())
+        .pacienteDTOs(pacienteDTO)
+        .build();
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
     
 }
