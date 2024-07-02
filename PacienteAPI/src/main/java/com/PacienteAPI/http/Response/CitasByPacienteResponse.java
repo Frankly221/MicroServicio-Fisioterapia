@@ -27,7 +27,8 @@ public class CitasByPacienteResponse {
 
     private  String PacienteLugarNac;
 
-    private int PacienteDni;
+    //ELIMINADO
+    // private int PacienteDni;
 
     private int PacienteTelefono;
 
@@ -38,6 +39,11 @@ public class CitasByPacienteResponse {
     private int PacientenHijos;
 
     private String PacienteReferencia;
+
+    //Agregado
+    private Boolean Pacientetipo_documento;
+    private int Pacientendoc_documento;
+    private String Pacientecorreo;
 
     private List<CitaDTO> citaDTIOList;
     

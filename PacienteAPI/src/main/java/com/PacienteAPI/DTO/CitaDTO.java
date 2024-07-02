@@ -18,5 +18,6 @@ public class CitaDTO {
     private int idpaciente;
     private Date hora;
     private int n_sesion;
+    private Date fecha;
     
 }

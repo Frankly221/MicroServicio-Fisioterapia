@@ -25,7 +25,6 @@ public class HcByPacienteResponse {
 
     private  String PacienteLugarNac;
 
-    private int PacienteDni;
 
     private int PacienteTelefono;
 
@@ -36,6 +35,11 @@ public class HcByPacienteResponse {
     private int PacientenHijos;
 
     private String PacienteReferencia;
+
+    private Boolean Pacientetipo_documento;
+    private int Pacientendoc_documento;
+    private String Pacientecorreo;
+    
 
     private List<hcDTO> hcDTOsList;
     

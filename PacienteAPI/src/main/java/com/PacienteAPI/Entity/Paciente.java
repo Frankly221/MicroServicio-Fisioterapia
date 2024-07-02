@@ -35,7 +35,10 @@ public class Paciente {
 
     private  String lugar_nac;
 
-    private int dni;
+    //Eliminado
+    // private int dni;
+
+   
 
     private int telefono;
 
@@ -46,5 +49,11 @@ public class Paciente {
     private int n_hijos;
 
     private String referencia;
+
+    //Agregados
+
+    private Boolean tipo_documento;
+    private int ndoc_documento;
+    private String correo;
     
 }

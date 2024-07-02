@@ -2,7 +2,7 @@ package com.InfoClinicoAPI.Entity;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,6 +40,6 @@ public class Sesiones {
 
    @ManyToOne(fetch = FetchType.EAGER)
    @JoinColumn(name ="idhc")
-   @JsonBackReference
+    @JsonIgnoreProperties({"sesiones"})
    private IClinico infoClinico;
 }

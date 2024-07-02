@@ -1,4 +1,4 @@
-package com.InfoClinicoAPI.Controller;
+package com.Citas.Controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,39 +15,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.InfoClinicoAPI.Entity.Sesiones;
-import com.InfoClinicoAPI.Service.SesionService;
+import com.Citas.Entity.EstadoCita;
+import com.Citas.Service.EstadoCitaService;
 
 @RestController
-@RequestMapping(value = "/api/sesion")
+@RequestMapping(value = "/api/estadocita")
 @CrossOrigin("/**")
-public class SesionController {
+
+public class EstadoCitaController {
 
     @Autowired
-    private SesionService sesionService;
+    private EstadoCitaService estadoCitaService;
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
-    public List<Sesiones> getAll(){
-        return sesionService.getAll();
+    public List<EstadoCita> getAll(){
+        return estadoCitaService.getall();
     }
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/one/{id}")
-    public Optional<Sesiones> getOne(@PathVariable("id") int id){
-        return sesionService.getOne(id);
+    public Optional<EstadoCita> getOne(@PathVariable("id") int id){
+
+        return estadoCitaService.getOne(id);
     }
+
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/save")
-    public Sesiones save(@RequestBody Sesiones sesiones){
-        return sesionService.save(sesiones);
+    public EstadoCita save(@RequestBody EstadoCita estadoCita){
+
+        return estadoCitaService.save(estadoCita);
+
     }
+
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/save")
-    public Sesiones editar(@RequestBody Sesiones sesiones, @PathVariable("id") int id){
+    @PutMapping("/editar/{id}")
+    public EstadoCita editar(@PathVariable("id") int id, @RequestBody EstadoCita estadoCita){
 
-        return sesionService.update(id,sesiones);
+        return estadoCitaService.editar(id,estadoCita);
     }
-
 
 
 

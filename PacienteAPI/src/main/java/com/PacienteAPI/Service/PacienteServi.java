@@ -54,12 +54,14 @@ public class  PacienteServi  {
             p.setDomicilio(paciente.getDomicilio());
             p.setFecha_nac(paciente.getFecha_nac());
             p.setLugar_nac(paciente.getLugar_nac());
-            p.setDni(paciente.getDni());
             p.setTelefono(paciente.getTelefono());
             p.setResidencia(paciente.getResidencia());
             p.setEstado_civil(paciente.getEstado_civil());
             p.setN_hijos(paciente.getN_hijos()); // Asegúrate de actualizar nHijos correctamente
             p.setReferencia(paciente.getReferencia());
+            p.setNdoc_documento(paciente.getNdoc_documento());
+            p.setTipo_documento(paciente.getTipo_documento());
+            p.setCorreo(paciente.getCorreo());
             return pacienteRepo.save(p);
         } else {
             throw new IllegalArgumentException("Paciente not found with id: " + id);
@@ -88,12 +90,14 @@ public class  PacienteServi  {
        .PacienteDomicilio(paciente.getDomicilio())
        .PacienteFechaNac(paciente.getFecha_nac())
        .PacienteLugarNac(paciente.getLugar_nac())
-       .PacienteDni(paciente.getDni())
        .PacienteTelefono(paciente.getTelefono())
        .PacienteResidencia(paciente.getResidencia())
        .PacienteEstadoCivil(paciente.getEstado_civil())
        .PacientenHijos(paciente.getN_hijos())
        .PacienteReferencia(paciente.getReferencia())
+       .Pacientendoc_documento(paciente.getNdoc_documento())
+       .Pacientetipo_documento(paciente.getTipo_documento())
+       .Pacientecorreo(paciente.getCorreo())
        .hcDTOsList(hcDTOsList)
        .build(); 
     }
@@ -111,12 +115,15 @@ public class  PacienteServi  {
        .PacienteDomicilio(paciente.getDomicilio())
        .PacienteFechaNac(paciente.getFecha_nac())
        .PacienteLugarNac(paciente.getLugar_nac())
-       .PacienteDni(paciente.getDni())
        .PacienteTelefono(paciente.getTelefono())
        .PacienteResidencia(paciente.getResidencia())
        .PacienteEstadoCivil(paciente.getEstado_civil())
        .PacientenHijos(paciente.getN_hijos())
        .PacienteReferencia(paciente.getReferencia())
+       .Pacientendoc_documento(paciente.getNdoc_documento())
+       .Pacientetipo_documento(paciente.getTipo_documento())
+       .Pacientecorreo(paciente.getCorreo())
+       
         .citaDTIOList(CitaDTOList)
         .build();
        

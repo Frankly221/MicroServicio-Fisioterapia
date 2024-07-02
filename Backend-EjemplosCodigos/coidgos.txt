@@ -1,0 +1,105 @@
+INSERT INTO info_clinico (inic_enferm, etiologia, diagnostico, observacion, fech_eval, inic_trat, peso, talla, temp, gs, fc, enf_cronic, idpaciente) VALUES
+('Initial Illness 1', 'Etiology 1', 'Diagnosis 1', 'Observation 1', '2024-06-18', '2024-06-19', 70.5, 1.75, 36.5, 'O+', '75 bpm', 'Chronic Disease 1', 1),
+('Initial Illness 2', 'Etiology 2', 'Diagnosis 2', 'Observation 2', '2024-06-19', '2024-06-20', 68.0, 1.65, 37.0, 'A+', '80 bpm', 'Chronic Disease 2', 2),
+('Initial Illness 3', 'Etiology 3', 'Diagnosis 3', 'Observation 3', '2024-06-20', '2024-06-21', 75.0, 1.80, 36.8, 'B+', '72 bpm', 'Chronic Disease 3', 3),
+('Initial Illness 4', 'Etiology 4', 'Diagnosis 4', 'Observation 4', '2024-06-21', '2024-06-22', 80.0, 1.85, 36.6, 'AB+', '78 bpm', 'Chronic Disease 4', 4),
+('Initial Illness 5', 'Etiology 5', 'Diagnosis 5', 'Observation 5', '2024-06-22', '2024-06-23', 65.0, 1.70, 37.2, 'O-', '85 bpm', 'Chronic Disease 5', 5),
+('Initial Illness 6', 'Etiology 6', 'Diagnosis 6', 'Observation 6', '2024-06-23', '2024-06-24', 90.0, 1.90, 36.4, 'A-', '90 bpm', 'Chronic Disease 6', 6),
+('Initial Illness 7', 'Etiology 7', 'Diagnosis 7', 'Observation 7', '2024-06-24', '2024-06-25', 85.0, 1.95, 36.7, 'B-', '88 bpm', 'Chronic Disease 7', 7),
+('Initial Illness 8', 'Etiology 8', 'Diagnosis 8', 'Observation 8', '2024-06-25', '2024-06-26', 60.0, 1.60, 37.1, 'AB-', '82 bpm', 'Chronic Disease 8', 8),
+('Initial Illness 9', 'Etiology 9', 'Diagnosis 9', 'Observation 9', '2024-06-26', '2024-06-27', 95.0, 2.00, 36.9, 'O+', '77 bpm', 'Chronic Disease 9', 9),
+('Initial Illness 10', 'Etiology 10', 'Diagnosis 10', 'Observation 10', '2024-06-27', '2024-06-28', 70.0, 1.75, 36.5, 'A+', '75 bpm', 'Chronic Disease 10', 10);
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+INSERT INTO sesiones (fecha, hora, tratamiento, asistencia, idhc) VALUES
+('2024-06-19', '10:00', 'Treatment 1', 'Present', 1),
+('2024-06-20', '11:00', 'Treatment 2', 'Present', 2),
+('2024-06-21', '12:00', 'Treatment 3', 'Absent', 3),
+('2024-06-22', '13:00', 'Treatment 4', 'Present', 4),
+('2024-06-23', '14:00', 'Treatment 5', 'Present', 5),
+('2024-06-24', '15:00', 'Treatment 6', 'Absent', 6),
+('2024-06-25', '16:00', 'Treatment 7', 'Present', 7),
+('2024-06-26', '17:00', 'Treatment 8', 'Present', 8),
+('2024-06-27', '18:00', 'Treatment 9', 'Absent', 9),
+('2024-06-28', '19:00', 'Treatment 10', 'Present', 10),
+('2024-06-19', '10:30', 'Treatment 11', 'Present', 1),
+('2024-06-20', '11:30', 'Treatment 12', 'Present', 2),
+('2024-06-21', '12:30', 'Treatment 13', 'Absent', 3),
+('2024-06-22', '13:30', 'Treatment 14', 'Present', 4),
+('2024-06-23', '14:30', 'Treatment 15', 'Present', 5);
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--Primero Ejecuta esto antes de Citas
+
+ALTER TABLE citas MODIFY COLUMN hora TIMESTAMP;
+
+--Después esto : 
+-- Insertar datos de ejemplo en estado_cita
+INSERT INTO estado_cita (descripcion) VALUES 
+('En Proceso'),
+('Asistio'),
+('Reprogramado'),
+('Falto');
+
+--y por ultimo esto :
+
+-- Insertar datos de ejemplo en citas
+INSERT INTO citas (tipo, idpaciente, hora, n_sesion, fecha, id_estado_cita) VALUES 
+('Consulta General', 1, '2024-07-01 10:00:00', 1, '2024-07-01', 1),
+('Consulta Especialista', 2, '2024-07-02 11:00:00', 1, '2024-07-02', 2),
+('Control', 3, '2024-07-03 12:00:00', 1, '2024-07-03', 3),
+('Consulta General', 4, '2024-07-04 13:00:00', 2, '2024-07-04', 1),
+('Consulta Especialista', 5, '2024-07-05 14:00:00', 2, '2024-07-05', 2),
+('Control', 6, '2024-07-06 15:00:00', 2, '2024-07-06', 3),
+('Consulta General', 7, '2024-07-07 16:00:00', 3, '2024-07-07', 1),
+('Consulta Especialista', 8, '2024-07-08 17:00:00', 3, '2024-07-08', 2),
+('Control', 9, '2024-07-09 18:00:00', 3, '2024-07-09', 3),
+('Consulta General', 10, '2024-07-10 19:00:00', 4, '2024-07-10', 1);
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+INSERT INTO pago (n_sesion, pago, fecha, idhc) 
+VALUES (2, 150.0, '2024-06-20', 2);
+
+INSERT INTO pago (n_sesion, pago, fecha, idhc) 
+VALUES (1, 100.0, '2024-06-19', 1);
+
+INSERT INTO pago (n_sesion, pago, fecha, idhc) 
+VALUES (3, 200.0, CURDATE(), 3);
+
+INSERT INTO pago (n_sesion, pago, fecha, idhc) 
+VALUES 
+    (4, 120.0, '2024-06-21', 4),
+    (5, 180.0, '2024-06-22', 5),
+    (6, 220.0, '2024-06-23', 6);
+    
+    INSERT INTO pago (n_sesion, pago, fecha, idhc) 
+VALUES (7, 300.0, NOW(), 7);
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO PacienteAPI (nombre, apellido, domicilio, fecha_nac, lugar_nac, telefono, residencia, estado_civil, n_hijos, referencia, tipo_documento, ndoc_documento, correo)
+VALUES 
+('Juan', 'Pérez', 'Calle Falsa 123', '1980-01-01', 'Buenos Aires', 123456789, 'Buenos Aires', 'Soltero', 0, 'Ninguna', TRUE, 12345678, 'juan.perez@example.com'),
+('Ana', 'García', 'Av. Siempre Viva 742', '1985-02-02', 'Córdoba', 987654321, 'Córdoba', 'Casada', 2, 'Amiga', FALSE, 87654321, 'ana.garcia@example.com'),
+('Carlos', 'Sánchez', 'Calle Larga 456', '1990-03-03', 'Rosario', 112233445, 'Rosario', 'Divorciado', 1, 'Primo', TRUE, 33445566, 'carlos.sanchez@example.com'),
+('María', 'López', 'Av. Libertador 789', '1975-04-04', 'Mendoza', 667788990, 'Mendoza', 'Viuda', 3, 'Hermana', FALSE, 99887766, 'maria.lopez@example.com'),
+('Pedro', 'Fernández', 'Calle Angosta 101', '1995-05-05', 'La Plata', 445566778, 'La Plata', 'Soltero', 0, 'Compañero', TRUE, 55667788, 'pedro.fernandez@example.com'),
+('Laura', 'Martínez', 'Av. Independencia 202', '1983-06-06', 'Tucumán', 223344556, 'Tucumán', 'Casada', 2, 'Amiga', FALSE, 33445577, 'laura.martinez@example.com'),
+('Jorge', 'Gómez', 'Calle Ancha 303', '1978-07-07', 'Salta', 778899001, 'Salta', 'Divorciado', 1, 'Vecino', TRUE, 88990022, 'jorge.gomez@example.com'),
+('Elena', 'Rodríguez', 'Av. Mitre 404', '1987-08-08', 'San Juan', 556677889, 'San Juan', 'Soltera', 0, 'Amiga', FALSE, 66778899, 'elena.rodriguez@example.com'),
+('Roberto', 'Hernández', 'Calle Mayor 505', '1992-09-09', 'Neuquén', 998877665, 'Neuquén', 'Casado', 3, 'Hermano', TRUE, 77889911, 'roberto.hernandez@example.com'),
+('Patricia', 'Torres', 'Av. Colón 606', '1989-10-10', 'San Luis', 112244336, 'San Luis', 'Viuda', 1, 'Tía', FALSE, 88991122, 'patricia.torres@example.com');
+
+
+
+
+
