@@ -45,5 +45,5 @@ public class Cita {
     @JsonIgnoreProperties({"citas"}) // Ignorar la referencia inversa para evitar ciclos
     private EstadoCita estadoCita; // Relación con EstadoCita
     
-    // Getters and setters
+
 }

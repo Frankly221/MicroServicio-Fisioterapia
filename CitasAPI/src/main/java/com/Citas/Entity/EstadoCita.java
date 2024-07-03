@@ -2,7 +2,7 @@ package com.Citas.Entity;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +33,7 @@ public class EstadoCita {
 
 
     @OneToMany(mappedBy = "estadoCita")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Cita> citas;
 
     

@@ -85,6 +85,7 @@ public class CitaService {
         .fecha(cita.getFecha())
         .n_sesion(cita.getN_sesion())
         .pacienteDTOs(pacienteDTO)
+        .estadoCita(cita.getEstadoCita())
         .build();
 
 
@@ -116,6 +117,7 @@ public class CitaService {
             .fecha(cita.getFecha())
             .n_sesion(cita.getN_sesion())
             .pacienteDTOs(pacienteDTO)
+            .estadoCita(cita.getEstadoCita())
             .build();
         
         result.add(pacienteByIdCita);
@@ -139,6 +141,7 @@ public List<PacienteByIdCita> findCitasByFechaWithPacientes(Date fecha) {
             .fecha(cita.getFecha())
             .n_sesion(cita.getN_sesion())
             .pacienteDTOs(pacienteDTO)
+            .estadoCita(cita.getEstadoCita())
             .build();
 
         result.add(pacienteByIdCita);

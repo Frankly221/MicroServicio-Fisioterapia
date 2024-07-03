@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import com.Citas.DTO.PacienteDTO;
+import com.Citas.Entity.EstadoCita;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,5 +35,7 @@ public class PacienteByIdCita {
     private int n_sesion;
 
     private Optional<PacienteDTO> pacienteDTOs;
+
+    private EstadoCita estadoCita;
     
 }
