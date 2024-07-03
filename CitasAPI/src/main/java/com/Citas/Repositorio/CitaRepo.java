@@ -1,5 +1,6 @@
 package com.Citas.Repositorio;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,6 @@ public interface  CitaRepo extends JpaRepository<Cita, Integer> {
 
    
     List<Cita> findByIdpaciente(int idpaciente);
+    List<Cita> findByFecha(Date fecha);
     
 }

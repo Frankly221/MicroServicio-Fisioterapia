@@ -1,9 +1,11 @@
 package com.Citas.Controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Citas.Entity.Cita;
+import com.Citas.Http.Response.PacienteByIdCita;
 import com.Citas.Service.CitaService;
 
 @RestController
@@ -77,6 +80,20 @@ public class CitaController {
     @GetMapping("/buscar-my-paciente-porIdCita/{idpac}")
     public ResponseEntity<?> findPacienteIdCita(@PathVariable("idpac") int idpac) {
         return ResponseEntity.ok(citaService.findPacienteByIdCita(idpac));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/buscar-todas-citas-con-pacientes")
+    public ResponseEntity<?> findAllCitasWithPacientes() {
+        return ResponseEntity.ok(citaService.findAllCitasWithPacientes());
+    }
+
+     @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/buscar-citas-por-fecha/{fecha}")
+    public ResponseEntity<?> findCitasByFechaWithPacientes(
+            @PathVariable("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha) {
+        List<PacienteByIdCita> citasConPacientes = citaService.findCitasByFechaWithPacientes(fecha);
+        return ResponseEntity.ok(citasConPacientes);
     }
 
 }
