@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.PacienteAPI.DTO.hcDTO;
+import com.PacienteAPI.DTO.Client.hcDTO;
 
 @FeignClient(name = "InfoClinicoAPI", url = "localhost:8081/api/if")
 public interface HC_client {

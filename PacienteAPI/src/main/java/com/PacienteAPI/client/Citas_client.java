@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.PacienteAPI.DTO.CitaDTO;
+import com.PacienteAPI.DTO.Client.CitaDTO;
 
 @FeignClient(name = "CitasAPI", url = "localhost:7272/api/cita")
 

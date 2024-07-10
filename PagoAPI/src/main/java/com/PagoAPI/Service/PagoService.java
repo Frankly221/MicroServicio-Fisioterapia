@@ -73,7 +73,7 @@ public class PagoService {
 
     public PagoDTO editar(int id, PagoDTO pagoDTO) {
 
-        Pago Existepago = pagoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pago No Encontrado"));
+        Pago Existepago = pagoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pago No Encontrado con el id : "+ id));
     
         Existepago.setN_sesion(pagoDTO.getN_sesion());
         Existepago.setFecha(pagoDTO.getFecha());

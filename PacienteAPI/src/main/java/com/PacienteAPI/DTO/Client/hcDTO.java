@@ -1,4 +1,4 @@
-package com.PacienteAPI.DTO;
+package com.PacienteAPI.DTO.Client;
 
 import java.util.Date;
 

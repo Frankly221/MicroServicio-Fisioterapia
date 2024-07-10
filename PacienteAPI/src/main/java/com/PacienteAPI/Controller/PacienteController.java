@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.PacienteAPI.Entity.Paciente;
+import com.PacienteAPI.DTO.Propio.PacienteDTO;
 import com.PacienteAPI.Service.PacienteServi;
 
 @RequestMapping(value = "/api/paciente")
@@ -32,38 +32,30 @@ public class PacienteController {
 
     @ResponseStatus(HttpStatus.OK) 
     @GetMapping("/all")
-    public List<Paciente> obtenerTodo(){
+    public List<PacienteDTO> obtenerTodo(){
 
         return pacienteServi.getALL();
     }
     @ResponseStatus(HttpStatus.OK)    
     @GetMapping("/one/{id}")
-    public Optional<Paciente> obtenerUno( @PathVariable("id") int id){
+    public Optional<PacienteDTO> obtenerUno( @PathVariable("id") int id){
 
         return pacienteServi.getOne(id);
 
     }
 
-    // @GetMapping("/one/{id}")
-    // public ResponseEntity<Paciente> obtenerUno(@PathVariable("id") int id) {
-    //     Optional<Paciente> paciente = pacienteServi.getOne(id);
-    //     if (paciente.isPresent()) {
-    //         return ResponseEntity.ok(paciente.get());
-    //     } else {
-    //         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-    //     }
 
     @ResponseStatus(HttpStatus.OK)  
     @PostMapping("/save")
-    public Paciente guardar(@RequestBody Paciente paciente){
+    public PacienteDTO guardar(@RequestBody PacienteDTO pacienteDTO){
 
-        return pacienteServi.save(paciente);
+        return pacienteServi.save(pacienteDTO);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/edit/{id}")
-    public Paciente editar(@PathVariable("id") int id, @RequestBody Paciente paciente) {
-        return pacienteServi.update(id, paciente);
+    public PacienteDTO editar(@PathVariable("id") int id, @RequestBody PacienteDTO pacienteDTO) {
+        return pacienteServi.update(id, pacienteDTO);
     }
 
 
@@ -77,6 +69,7 @@ public class PacienteController {
 
     //Conexiones entre microservicios
 
+    //Encontrar los Historiales clinicos segun el id del Paciente.
     @GetMapping("/buscar-paciente/{idpaciente}")
     public ResponseEntity<?> findHcByIdPaciente(@PathVariable int idpaciente){
 
