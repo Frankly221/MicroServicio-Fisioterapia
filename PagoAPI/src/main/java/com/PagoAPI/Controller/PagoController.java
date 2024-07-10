@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.PagoAPI.Entity.Pago;
+import com.PagoAPI.DTO.PagoDTO;
 import com.PagoAPI.Service.PagoService;
 
 @RestController
@@ -30,28 +30,48 @@ public class PagoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
-    public List<Pago> getAll(){
+    public List<PagoDTO> getAll(){
 
         return pagoService.getAll();
     }
+//----------------------------------------------------------------
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/allsinhc")
+    public List<PagoDTO> getAllSinIdHc(){
+
+        return pagoService.getAllWithoutIdHc();
+    }
+//----------------------------------------------------------------
+@ResponseStatus(HttpStatus.OK)
+@GetMapping("/one/sinhc/{id}")
+public Optional<PagoDTO> getOneSinHc(@PathVariable("id") int id){
+
+    return pagoService.getOneWhithoutIdHc(id);
+}
+
+//----------------------------------------------------------------
+
+
+
+
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/one/{id}")
-    public Optional<Pago> getOne(@PathVariable("id") int id){
+    public Optional<PagoDTO> getOne(@PathVariable("id") int id){
 
         return pagoService.getOne(id);
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/save")
-    public Pago save(@RequestBody Pago pago){
+    public PagoDTO save(@RequestBody PagoDTO pagoDTO){
 
-        return pagoService.save(pago);
+        return pagoService.save(pagoDTO);
     }
 
-
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping("/edit/{id}")
-    public Pago editar(@RequestBody Pago pago, @PathVariable("id") int id){
+    public PagoDTO editar(@RequestBody PagoDTO pago, @PathVariable("id") int id){
 
         return pagoService.editar(id, pago);
     }
@@ -60,10 +80,12 @@ public class PagoController {
 
         //Conexiones
 
+        //Recuperamos el id del Historial Clinica y respondemos todos los pagos que le pertenece a este.
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/buscar-my-pago/{idhc}")
     public ResponseEntity<?> findByIdHc(@PathVariable int idhc){
 
-        return ResponseEntity.ok(pagoService.findByIdHc(idhc));
+        return ResponseEntity.ok(pagoService.FindPagosForIdHc(idhc));
     }
 
 
